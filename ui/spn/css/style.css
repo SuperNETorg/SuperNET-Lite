@@ -700,7 +700,7 @@ main {
 
 .bgbtcd {
     background-image:url(../img/bg_btcd.svg);
-    background-repeat: no repeat;
+    background-repeat: no-repeat;
 
     transition: all .4s ease;
     -webkit-transition: all .4s ease;
@@ -828,7 +828,7 @@ main {
 
 .bgvrc {
     background-image:url(../img/bg_vrc.svg);
-    background-repeat: no repeat;
+    background-repeat: no-repeat;
 
     transition: all .4s ease;
     -webkit-transition: all .4s ease;
@@ -944,7 +944,7 @@ main {
 
 .bgbits {
     background-image:url(../img/bg_bits.svg);
-    background-repeat: no repeat;
+    background-repeat: no-repeat;
 
     transition: all .4s ease;
     -webkit-transition: all .4s ease;
@@ -1060,6 +1060,129 @@ main {
 	opacity: 1;
 }
 
+/* ------------ EMERGING MENU - INFX -------------- */
+
+.bginfx h4:hover{
+	color: #B1B4DB !important;	
+}
+
+.bginfx {
+    background-image:url(../img/bg_infx.svg);
+    background-repeat: no-repeat;
+
+    transition: all .4s ease;
+    -webkit-transition: all .4s ease;
+}
+
+.cbox:hover .overboxINFX { 
+	opacity: 0.75; 
+}
+
+.cbox .overboxINFX {
+    background-color: #293BED;
+    position: relative;
+    top: 0;
+    left: 0;
+    color: white;
+    opacity: 0;
+    width: 100%;
+    height: 60px;
+
+    transition: all .4s ease; 
+    transform: translateY(50px);
+    -webkit-transition: all .4s ease; 
+    -webkit-transform: translateY(50px);
+}
+
+.cbox:hover .overboxINFX { 
+	opacity: 1;
+	transform: translateY(0px);
+	-webkit-transform: translateY(0px);
+}
+
+.overboxINFX ul {
+	position: relative;
+	float: left;
+	top: 0;
+	left: 0;
+	list-style: none;
+}
+		
+.overboxINFX li:hover {
+	cursor: pointer;
+}
+
+.overboxINFX li:first-of-type {
+    position: absolute;
+    background-image:url(../img/minicon_infx.svg);
+    background-repeat: no-repeat; 
+    background-size: 100% 100%;
+    width: 80px;
+    height: 60px;
+    margin-top: 0px;
+    margin-left: 0px;
+
+    opacity: 0.5;
+    transition: all .4s ease;
+    -webkit-transition: all .4s ease;	  
+}
+
+
+.overboxINFX li:first-of-type:hover {
+	opacity: 1;
+}
+  
+.overboxINFX li:nth-of-type(2) {
+    position: absolute;
+    background-image: url(../img/minicon_trans.svg); 
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 44px;
+    height: 44px;
+    margin-top: 6px;
+    margin-left: 95px;
+
+    opacity: 0.5;
+    transition: all .4s ease;
+    -webkit-transition: all .4s ease;
+}
+
+.overboxINFX li:nth-of-type(2):hover {
+	opacity: 1;
+}
+
+.overboxINFX li:nth-of-type(3) {
+    position: absolute;
+    margin-top: 8px;
+    margin-left: 155px;
+
+    transition: all .4s ease;
+    -webkit-transition: all .4s ease;
+}
+
+.overboxINFX li:nth-of-type(4):hover {
+	opacity: 1;
+}
+
+.overboxINFX li:nth-of-type(4) {
+    position: absolute;
+    background-image: url(../img/minicon_mailsend.svg);
+    background-repeat: no-repeat; 
+    background-size: 100%;
+    width: 37px;
+    height: 37px;
+    margin-top: 4px !important;
+    margin-left: 167px !important;
+
+    opacity: 0.5;
+    transition: all .4s ease;
+    -webkit-transition: all .4s ease;	  
+}
+
+.overboxINFX li:nth-of-type(3):hover {
+	opacity: 1;
+}
+
 /* ------------ EMERGING MENU - OPAL -------------- */
 
 .bgopal h4:hover{
@@ -1068,7 +1191,7 @@ main {
 
 .bgopal {
     background-image:url(../img/bg_opal.svg);
-    background-repeat: no repeat;
+    background-repeat: no-repeat;
 
     transition: all .4s ease;
     -webkit-transition: all .4s ease;
@@ -1314,7 +1437,7 @@ main {
 
 .bgvpn {
     background-image:url(../img/bg_vpn.svg);
-    background-repeat: no repeat;
+    background-repeat: no-repeat;
 
     transition: all .4s ease;
     -webkit-transition: all .4s ease;
@@ -1437,7 +1560,7 @@ main {
 
 .bgbtc {
     background-image:url(../img/bg_btc.svg);
-    background-repeat: no repeat;
+    background-repeat: no-repeat;
 
     transition: all .4s ease;
     -webkit-transition: all .4s ease;
@@ -1557,7 +1680,7 @@ main {
 
 .bgltc {
     background-image:url(../img/bg_ltc.svg);
-    background-repeat: no repeat;
+    background-repeat: no-repeat;
 
     transition: all .4s ease;
     -webkit-transition: all .4s ease;
@@ -1693,7 +1816,7 @@ main {
 
 .bgbbr {
 	  background-image:url(../img/bg_bbr.svg);
-	  background-repeat: no repeat;
+	  background-repeat: no-repeat;
 	  
 	  transition: all .4s ease;
 	  -webkit-transition: all .4s ease;
@@ -1816,7 +1939,7 @@ main {
 
 .bgdoge {
     background-image:url(../img/bg_doge.svg);
-    background-repeat: no repeat;
+    background-repeat: no-repeat;
 
     transition: all .4s ease;
     -webkit-transition: all .4s ease;

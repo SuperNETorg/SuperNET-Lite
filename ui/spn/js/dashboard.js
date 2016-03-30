@@ -32,7 +32,8 @@ var NRS = (function (NRS, $, undefined) {
     { "coin": "BTCD", "bridge": "http://"+serverBTC[randomBTC], "msigAddr": "" },
     //{ "coin": "BITS", "bridge": "http://"+serverBTC[randomBTC], "msigAddr": "" },
     { "coin": "OPAL", "bridge": "http://"+serverBTC[randomBTC], "msigAddr": "" },
-    { "coin": "VRC", "bridge": "http://"+serverBTC[randomBTC], "msigAddr": "" }
+    { "coin": "VRC", "bridge": "http://"+serverBTC[randomBTC], "msigAddr": "" },
+    { "coin": "INFX", "bridge": "http://"+serverBTC[randomBTC], "msigAddr": "" }
     //{ "coin": "VPN", "bridge": "http://178.63.60.131", "msigAddr": "" }
     ];
 
@@ -43,6 +44,7 @@ var NRS = (function (NRS, $, undefined) {
     { "coin": "BTCD", "assetID": "6918149200730574743", "decimal": 4, "depositConfirmation": "10", "balance": 0, "minWithdraw": 0.5,"maxWithdraw": 999, "minDeposit": 0.5 },
     { "coin": "VRC", "assetID": "9037144112883608562", "decimal": 8, "depositConfirmation": "10", "balance": 0, "minWithdraw": 50,"maxWithdraw": 49999, "minDeposit": 50 },
     { "coin": "OPAL", "assetID": "6775076774325697454", "decimal": 8, "depositConfirmation": "6", "balance": 0, "minWithdraw": 50,"maxWithdraw": 999999, "minDeposit": 50 },
+    { "coin": "INFX", "assetID": "5378783389140157313", "decimal": 4, "depositConfirmation": "6", "balance": 0, "minWithdraw": 50,"maxWithdraw": 999999, "minDeposit": 50 }
     //{ "coin": "BITS", "assetID": "13120372057981370228", "decimal": 6, "depositConfirmation": "20", "balance": 0, "minWithdraw": 500,"maxWithdraw": 480000, "minDeposit": 500 }
     //{ "coin": "VPN", "assetID": "7734432159113182240", "decimal": 4, "depositConfirmation": "10", "balance": 0, "minWithdraw": 5000,"maxWithdraw": 80000, "minDeposit": 5000 }
     ];
@@ -54,6 +56,7 @@ var NRS = (function (NRS, $, undefined) {
     { "coin": "BTCD", "accountRS": "NXT-8RQH-HFUP-3AJ9-E2DB9" },
     { "coin": "VRC", "accountRS": "NXT-8RQH-HFUP-3AJ9-E2DB9" },
     { "coin": "OPAL", "accountRS": "NXT-8RQH-HFUP-3AJ9-E2DB9" },
+    { "coin": "INFX", "accountRS": "NXT-8RQH-HFUP-3AJ9-E2DB9" }
     //{ "coin": "BITS", "accountRS": "NXT-8RQH-HFUP-3AJ9-E2DB9" }
     //{ "coin": "VPN", "accountRS": "NXT-8RQH-HFUP-3AJ9-E2DB9" }
     ];
@@ -65,6 +68,7 @@ var NRS = (function (NRS, $, undefined) {
     { "coin": "BTCD", "server": ["NXT-M3PZ-B7U2-359G-4VXAJ", "NXT-4R55-GPLW-DRYV-HMVEK", "NXT-PPPK-GBAU-6U4V-9NSMX", "NXT-XXQB-S9RV-AZB4-9N4BB"] },
     { "coin": "VRC", "server": ["NXT-M3PZ-B7U2-359G-4VXAJ", "NXT-4R55-GPLW-DRYV-HMVEK", "NXT-PPPK-GBAU-6U4V-9NSMX", "NXT-XXQB-S9RV-AZB4-9N4BB"] },
     { "coin": "OPAL", "server": ["NXT-M3PZ-B7U2-359G-4VXAJ", "NXT-4R55-GPLW-DRYV-HMVEK", "NXT-PPPK-GBAU-6U4V-9NSMX", "NXT-XXQB-S9RV-AZB4-9N4BB"] },
+    { "coin": "INFX", "server": ["NXT-M3PZ-B7U2-359G-4VXAJ", "NXT-4R55-GPLW-DRYV-HMVEK", "NXT-PPPK-GBAU-6U4V-9NSMX", "NXT-XXQB-S9RV-AZB4-9N4BB"] }
     //{ "coin": "BITS", "server": ["NXT-M3PZ-B7U2-359G-4VXAJ", "NXT-4R55-GPLW-DRYV-HMVEK", "NXT-PPPK-GBAU-6U4V-9NSMX", "NXT-XXQB-S9RV-AZB4-9N4BB"] }
     //{ "coin": "VPN", "server": ["NXT-M3PZ-B7U2-359G-4VXAJ", "NXT-4R55-GPLW-DRYV-HMVEK", "NXT-PPPK-GBAU-6U4V-9NSMX", "NXT-XXQB-S9RV-AZB4-9N4BB"] }
     ];
@@ -77,6 +81,7 @@ var NRS = (function (NRS, $, undefined) {
     var gateWayOPAL = [false, false, false];
     var gateWayBTCD = [false, false, false];
     var gateWayVRC = [false, false, false];
+    var gateWayINFX = [false, false, false];
 
     NRS.setSuperNETPassword = function (password) {
         _password = password;
@@ -118,6 +123,7 @@ var NRS = (function (NRS, $, undefined) {
             }
         }, 80000);
     };
+
 
     NRS.publicKey = function() {
 
@@ -323,6 +329,14 @@ var NRS = (function (NRS, $, undefined) {
                                  },3100);
                              }
                          break;
+                         case 'INFX':
+                             gateWayINFX[data[0].gatewayid] = true;
+                             if (gateWayINFX[0] === false || gateWayINFX[1] === false || gateWayINFX[2] === false) {
+                                 setInterval(function () {
+                                     getRelayMSIG(bridge,url,coin,index, tries++);
+                                 },2000);
+                             }
+                         break;
                          case 'OPAL':
                              gateWayOPAL[data[0].gatewayid] = true;
                              if (gateWayOPAL[0] === false || gateWayOPAL[1] === false || gateWayOPAL[2] === false) {
@@ -488,7 +502,7 @@ var NRS = (function (NRS, $, undefined) {
     }
 
     function sentMGWcoin(coin) {
-        var message = '{"redeem":"' + coin + '","withdrawaddr":"' + $.trim($("#field114cont").val()) + '","InstantDEX":""}';
+        var message = '{"withdrawaddr":"' + $.trim($("#field114cont").val()) + '"}';
         var coinDetails = $.grep(_coin, function (coinD) { return coinD.coin == coin });
         var coinMGW = $.grep(_coinMGW, function (coinD) { return coinD.coin == coin });
 
@@ -517,13 +531,14 @@ var NRS = (function (NRS, $, undefined) {
                     secretPhrase: "",
                     messageIsText: "true",
                     message: message,
-                    feeNQT: "100000000",
+                    feeNQT: "0",
                     deadline: "1440",
                     recipient: recipient,
                     asset: coinDetails[0].assetID,
                     quantityQNT: NRS.convertToQNT($("#field113cont").val(), coinDetails[0].decimal),
                     merchant_info: ""
                 }, function (response) {
+
                     $btn.button('reset');
                     if (response.errorCode) {
                         $.growl(NRS.translateServerError(response), { "type": "danger" });
@@ -563,7 +578,7 @@ var NRS = (function (NRS, $, undefined) {
                 secretPhrase: "",
                 messageIsText: "true",
                 message: message,
-                feeNQT: "100000000",
+                feeNQT: "0",
                 deadline: "1440",
                 recipient: recipient,
                 asset: coinDetails[0].assetID,
@@ -902,6 +917,10 @@ var NRS = (function (NRS, $, undefined) {
                 NXTfee_equiv = 1;
                 txfee = 0.01;
             break;
+            case 'INFX':
+                NXTfee_equiv = 1;
+                txfee = 0.01;
+            break;
             case 'BITS':
                 NXTfee_equiv = 10;
                 txfee = 0.01;
@@ -939,6 +958,7 @@ var NRS = (function (NRS, $, undefined) {
                 }
             break;
             case 'OPAL':
+            case 'INFX':
                 if(msig === 'C') {
                     multisig = true;
                 }
@@ -1301,7 +1321,7 @@ var NRS = (function (NRS, $, undefined) {
         if (coin == "NXT") {
             sentNXT();
         }
-        else if (coin == "BTC" || coin == "LTC" || coin == "DOGE" || coin == "BTCD" || coin == "VRC" || coin == "OPAL" || coin == "BITS" || coin == "VPN") {
+        else if (coin == "BTC" || coin == "LTC" || coin == "DOGE" || coin == "BTCD" || coin == "VRC" || coin == "OPAL" || coin == "INFX" || coin == "BITS" || coin == "VPN") {
 
             if(recipient === 'no') {
                 sentMGWcoin(coin);
@@ -1386,224 +1406,6 @@ var NRS = (function (NRS, $, undefined) {
         }
     });
 
-
-    /*
-    $("#cash_service_select").on("select change", function () {
-
-        var operator = $(this).val();
-        var coin = $("#cash_operation_coin").val();
-
-        var options = NRS.coinOperations.operators[operator].options;
-
-        $("#select_currency_li").show();
-
-        var li_currency_rows = '<option></option>';
-        $.each(options, function (option_index, option_value) {
-
-            li_currency_rows += '<option value="'+option_index+'">'+option_index+'</option>';
-
-        });
-
-        $("#cash_select_currency").html(li_currency_rows).on("select change", function () {
-
-            var coin_option = $(this).val();
-            var exchange_details = options[coin_option];
-
-            console.log(exchange_details);
-            $("#select_transfer_li").show();
-
-            var li_transfer_rows = '<option></option>';
-            $.each(exchange_details, function (coin_index, coin_value) {
-
-                li_transfer_rows += '<option value="'+coin_index+'">'+coin_value.display+'</option>';
-
-            });
-
-            $("#cash_select_transfer").html(li_transfer_rows).on("select change", function () {
-
-                $("#cash_exchange_price").show();
-                $("#input_amount_li").show();
-                var transfer_option = $(this).val();
-                var exchange_type = $("#cash_operation_type").val();
-                var f,t;
-
-                if(exchange_type === 'purchase') {
-
-                    f=transfer_option;
-                    t=coin.toUpperCase();
-
-                } else if(exchange_type === 'convert') {
-
-                    t=transfer_option;
-                    f=coin.toUpperCase();
-
-                }
-
-                var url =  NRS.coinOperations.operators[operator].url + 'get_xrate.php?f='+f+'&t='+t;
-                console.log(url);
-                var xrate = "Invalid";
-
-                $.ajax({
-                    url:url,
-                    dataType: 'jsonp',
-                    type: 'GET',
-                    timeout: 30000,
-                    crossDomain: true,
-                    success: function (data) {
-
-                        if(data.error !== undefined) {
-
-                            $("#exchange_price_text").val(data.error);
-
-                        } else {
-
-                            xrate = data;
-                            xrate.xrate_global = data.xrate * data.out_prec.correction / data.in_prec.correction;
-                            var xrate_unit = xrate.xrate_global * parseFloat(data.in_def);
-                            xrate_unit = utoFixed(xrate_unit,(data.out_prec.dec));
-
-                            if (!data.out_prec.fee) {
-                                data.out_prec.fee = 0.0;
-                            }
-
-                            NRS.cash.data = data;
-
-                            var xrate_show_calc = xrate_unit+data.out_prec.fee;
-                            var xrate_show = Math.floor(xrate_show_calc*100000000)/100000000;
-
-                            $("#exchange_price_text").val(xrate_show);
-                            $("#cash_input_amount").val(data.in_min);
-
-
-
-
-                            //console.log(data);
-                        }
-
-
-                    },
-                    error: function (err) {
-                        $("#exchange_price_text").val('Error');
-                        NRS.cash.xrate = 0;
-                        NRS.cash.data = {};
-                    }
-
-                });
-
-
-                $("#cash_input_amount").on('change', function (e) {
-
-                    var data = NRS.cash.data;
-
-                    if(NRS.cash.data.error !== undefined) {
-                        $("#exchange_price_text").val(data.error);
-                    } else {
-                        xrate = data;
-                        xrate.xrate_global = data.xrate * data.out_prec.correction / data.in_prec.correction;
-                        var xrate_unit = xrate.xrate_global * parseFloat(data.in_def);
-                        xrate_unit = utoFixed(xrate_unit,(data.out_prec.dec));
-                        var charCode = !e.charCode ? e.which : e.charCode;
-                        if (charCode == 188) {
-                            $.growl("Comma is not allowed, use a dot instead.", {
-                                "type": "danger"
-                            });
-                        }
-
-
-                        var exchange_type = $("#cash_operation_type").val();
-                        var f,t;
-
-                        if(exchange_type === 'purchase') {
-
-                            f=transfer_option;
-                            t=coin.toUpperCase();
-
-                        } else if(exchange_type === 'convert') {
-
-                            t=transfer_option;
-                            f=coin.toUpperCase();
-
-                        }
-
-                        if($(this).val() < data.in_min) {
-                            $(this).val(data.in_min);
-                            $.growl("Minimum "+f + " input is "+data.in_min+" "+f, {
-                                "type": "danger"
-                            });
-                            e.preventDefault();
-                        }
-
-                        if($(this).val() > data.in_max) {
-                            $(this).val(Math.floor(data.in_max));
-                            $.growl("Maximum "+f + " input is "+data.in_max+" "+f, {
-                                "type": "danger"
-                            });
-                            e.preventDefault();
-                        }
-
-                        if(xrate.xrate_global !== 'notfound') {
-                            var xrate_convert = xrate.xrate_global * $(this).val() + data.out_prec.fee;
-                            $("#exchange_price_text").val(Math.floor(xrate_convert*100000000)/100000000);
-                        }
-
-
-                    }
-
-
-                });
-
-            });
-
-        });
-        console.log(options);
-
-
-    });
-
-
-    function utoFixed(num, fixed) {
-        fixed = fixed || 0;
-        fixed = Math.pow(10, fixed);
-        return Math.round(num * fixed) / fixed;
-    }
-
-
-    $("#cash_select_transfer").on("change select", function () {
-
-
-        $("#cash_exchange_price").hide();
-        $("#input_amount_li").hide();
-        $("#cash_input_amount").val('');
-
-    });
-
-    $(".clear_cash_operation").on('click', function () {
-
-        $("#select_currency_li").hide();
-        $("#cash_select_currency").html("");
-        $("#cash_operation_text").val("");
-        $("#select_transfer_li").hide();
-        $("#cash_exchange_price").hide();
-        $("#input_amount_li").hide();
-        $("#cash_input_amount").val('');
-        $("select#cash_service_select").val("");
-    });
-
-    $("#cash_operation_type").on("change select", function () {
-
-        $("#select_currency_li").hide();
-        $("#cash_select_currency").html("");
-        $("#cash_operation_text").val("");
-        $("#select_transfer_li").hide();
-        $("#cash_exchange_price").hide();
-        $("#input_amount_li").hide();
-        $("#cash_input_amount").val('');
-        $("select#cash_service_select").val("");
-
-    });
-
-
-     */
 
     $("#field113cont").keydown(function (e) {
         var coin = getModalCoin($("#modal-11"));
